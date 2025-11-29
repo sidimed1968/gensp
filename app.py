@@ -35,9 +35,10 @@ if 'lang' not in st.session_state:
     st.session_state.lang = 'fr'
 
 if 'db' not in st.session_state:
-    # Créer le chemin du fichier Excel dans le dossier de l'utilisateur
-    excel_path = os.path.join(os.path.expanduser("~"), "logements.xlsx")
-    st.session_state.db = LogementDatabase(excel_path=excel_path)
+    # Respecter les variables d'environnement si présentes (utiles en déploiement)
+    excel_path = os.environ.get('LOGEMENTS_EXCEL_PATH', os.path.join(os.path.expanduser("~"), "logements.xlsx"))
+    db_path = os.environ.get('LOGEMENTS_DB_PATH', 'logements.db')
+    st.session_state.db = LogementDatabase(db_path=db_path, excel_path=excel_path)
     st.session_state.data_loaded = False
 
 if 'selected_logements' not in st.session_state:

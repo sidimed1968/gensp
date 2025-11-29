@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    container_name: gensp_streamlit
+    ports:
+      - "8501:8501"
+    environment:
+      - LOGEMENTS_DB_PATH=/data/logements.db
+      - LOGEMENTS_EXCEL_PATH=/data/logements.xlsx
+      - PORT=8501
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
