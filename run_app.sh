@@ -33,7 +33,12 @@ echo "✅ Dépendances installées"
 echo ""
 
 # Vérifier que le fichier Excel existe
-if [ ! -f "logements.xlsx" ]; then
+EXCEL_PATH=${LOGEMENTS_EXCEL_PATH:-"$(python3 -c "import os; print(os.path.join(os.path.expanduser('~'), 'logements.xlsx'))")"}
+DB_PATH=${LOGEMENTS_DB_PATH:-"logements.db"}
+
+echo "🔧 Fichiers: DB=${DB_PATH}, Excel=${EXCEL_PATH}"
+
+if [ ! -f "${EXCEL_PATH}" ]; then
     echo "⚠️  Attention: logements.xlsx n'est pas trouvé"
     echo "   L'application démarrera mais vous devrez importer un fichier Excel"
 else

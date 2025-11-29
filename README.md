@@ -25,6 +25,21 @@ Application complète de gestion des logements administratifs de Nouakchott avec
 pip install -r requirements.txt
 ```
 
+### Déploiement (Docker)
+
+Vous pouvez exécuter l'application dans un conteneur Docker :
+
+```bash
+# Construire l'image
+docker build -t gensp:latest .
+
+# Démarrer avec Docker Compose
+docker-compose up -d --build
+
+# L'application sera disponible sur http://localhost:8501
+```
+
+
 2. **Préparer les données :**
    - Placer le fichier `logements.xlsx` dans le même répertoire que les scripts
    - L'application créera automatiquement la base de données SQLite
